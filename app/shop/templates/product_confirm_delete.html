@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Delete Product
+{% endblock %}
+
+{% block content %}
+    <form class="d-flex flex-column container align-items-center mt-5" action="{% url 'delete_product' product.pk %}" method="post">
+        {% csrf_token %}
+        <p>Are you sure in deleting?</p>
+        <div class="d-flex w-25 justify-content-around">
+            <input role="button" class="btn btn-danger" type="submit" value="Delete">
+            <a class="btn btn-secondary" href="{% url 'product' product.pk %}" role="button">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

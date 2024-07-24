@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Shopping Cart
+{% endblock %}
+
+{% block content %}
+	<div class="d-flex flex-column align-items-center">
+        {% for product in shopping_cart %}
+            <div class="mt-3 d-flex flex-column align-items-center">
+                <a href="{% url 'product' product.product.pk %}">{{ product.product.title }}</a>
+                <div><b>Price: </b>{{ product.product.price }}</div>
+                <div><b>Count: </b>{{ product.count }}</div>
+                <div><b>Total: </b>{{ product.total }}</div>
+                <form class="mt-1" action="{% url 'shopping_cart_delete' product.pk %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+            </div>
+        {% endfor %}
+
+        {% if shopping_cart %}
+            <a class="mt-2" href="{% url 'order' %}">Order</a>
+        {% else %}
+            <h3>Shopping Cart is empty!</h3>
+        {% endif %}
+    </div>
+{% endblock %}

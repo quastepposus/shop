@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Add Product
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex flex-column align-items-center container">
+        <h1>Edit Product</h1>
+        <form method="post" action="{% url 'edit_product' product.pk %}" class="d-flex container flex-column align-items-center">
+            {% include 'partial/form.html' with button_text="Edit" %}
+        </form>
+    </div>
+{% endblock %}
